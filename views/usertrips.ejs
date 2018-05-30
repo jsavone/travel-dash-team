@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Trips</title>
+  </head>
+  <body>
+    <h1>Welcome <%=user.name%>!</h1>
+    <a href="/newtrip">Plan a Trip</a>
+    <div class="tripContainer">
+      <% for(let i =0; i < trips.length; i++) { %>
+        <div class="trip">
+          <div class="tripInfo">
+            <h2><%=trips[i].trip_name%></h2>
+            <p>Date:</p>
+            <p><%=trips[i].date%></p>
+          </div>
+          <div class="airline">
+            <h3>Airline:</h3>
+            <a href="/airline/<%=trips[i].airline_id%>"><%=trips[i].airline_name%></a>
+          </div>
+          <div class="toFrom">
+            <h3>From:</h3>
+            <p><%=trips[i].from%></p>
+            <h3>To:</h3>
+            <p><%=trips[i].to%></p>
+          </div>
+          <div class="edit">
+            <a href="/edittrip/<%=trips[i].trip_id%>">Edit</a>
+          </div>
+        </div>
+
+
+      <%}%>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Trip</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
+    <style media="screen">
+
+    body {
+      font-family: 'Noto Sans';
+      text-align: center;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      font-size: 17px;
+      box-sizing: border-box;
+      border: 2px solid black;
+      height: 40px;
+      margin: 0 auto;
+      margin-top: 20px;
+      display: block;
+      width: 300px;
+    }
+
+    select {
+      margin-top: 20px;
+      width: 300px;
+      height: 40px;
+      border: 2px solid black;
+    }
+
+    input[type="submit"] {
+      height: 60px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    </style>
+  </head>
+  <body>
+    <h1>Edit Trip</h1>
+    <form action="/edittrip/<%=trip.id%>" method="post">
+      <input type="text" name="name" value="<%=trip.trip_name%>">
+      <input type="text" name="from" value="<%=trip.from%>">
+      <input type="text" name="to" value="<%=trip.to%>">
+      <select name="airline">
+        <% for(let i = 0; i < airline.length; i++) { %>
+          <option value="<%=airline[i].id%>"><%=airline[i].airline_name%></option>
+      <% } %>
+      </select>
+      <input type="date" name="date">
+      <input type="submit" value="Update">
+    </form>
+  </body>
+</html>
