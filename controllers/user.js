@@ -9,7 +9,10 @@ module.exports = {
   login: (req, res)=>{
     knex("user").where("email", req.body.email).then((results)=>{
       let user = results[0];
-      if(user.password == req.body.password){
+      if(results.length < 1) {
+        res.redirect("/")
+      }
+      else if (user.password == req.body.password){
         req.session.user_id = user.id;
         req.session.save(()=>{
         res.redirect("/usertrips")
