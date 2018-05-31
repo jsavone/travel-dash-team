@@ -3,10 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>User Trips</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
+    <style media="screen">
+
+      body {
+        font-family: 'Noto Sans';
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #plan {
+        border: 2px solid black;
+        padding: 15px 20px 15px 20px;
+        text-decoration: none;
+      }
+
+      .tripContainer {
+        display: flex;
+      }
+
+    </style>
   </head>
   <body>
     <h1>Welcome <%=user.name%>!</h1>
-    <a href="/newtrip">Plan a Trip</a>
+    <a id="plan" href="/newtrip">Plan a Trip</a>
     <div class="tripContainer">
       <% for(let i =0; i < trips.length; i++) { %>
         <div class="trip">
