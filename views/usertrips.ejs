@@ -12,15 +12,54 @@
         width: 100vw;
         height: 100vh;
       }
+      h1 {
+        margin-bottom: 30px;
+      }
 
       #plan {
+
+        margin: 0 auto;
         border: 2px solid black;
         padding: 15px 20px 15px 20px;
         text-decoration: none;
       }
 
       .tripContainer {
+        margin-top: 80px;
+      }
+
+      .trip {
+        text-align: left;
+        border: 2px solid black;
+        margin: 20px auto;
+        height: 220px;
+        width: 720px;
         display: flex;
+        padding: 5px;
+      }
+
+      .tripInfo {
+        width: 40%;
+      }
+
+      .airline {
+        width: 20%;
+      }
+
+      .toFrom {
+        width: 10%;
+      }
+
+      .edit a{
+        text-decoration: none;
+        color: black;
+        float: right;
+        text-align: center;
+        margin: 160px 0px 0px 150px;
+        height: 23px;
+        width: 70px;
+        border: 2px solid black;
+        padding: 15px;
       }
 
     </style>
@@ -30,11 +69,13 @@
     <a id="plan" href="/newtrip">Plan a Trip</a>
     <div class="tripContainer">
       <% for(let i =0; i < trips.length; i++) { %>
+        <% let date = trips[i].date.toJSON().toString() %>
+      <%  let newDate = `${date[5]}${date[6]}/${date[8]}${date[9]}/${date[2]}${date[3]}` %>
         <div class="trip">
           <div class="tripInfo">
             <h2><%=trips[i].trip_name%></h2>
             <p>Date:</p>
-            <p><%=trips[i].date%></p>
+            <p><%=newDate%></p>
           </div>
           <div class="airline">
             <h3>Airline:</h3>

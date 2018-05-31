@@ -39,6 +39,7 @@ module.exports = {
     knex('user').where('id', req.session.user_id).then((users) => {
       let user = users[0];
       knex('trip').join('airline', 'airline.id', 'trip.airline_id').select('trip.id as trip_id', 'trip.trip_name', 'trip.from', 'trip.to', 'trip.date', 'trip.airline_id', 'airline.airline_name').where('trip.user_id', req.session.user_id).then((trips) => {
+        // res.json(trips)
           res.render('usertrips', {user:user, trips:trips})
         })
     })

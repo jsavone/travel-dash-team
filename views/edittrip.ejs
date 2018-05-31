@@ -46,16 +46,22 @@
   </head>
   <body>
     <h1>Edit Trip</h1>
+    <% let date = trip.date.toJSON().toString() %>
+  <%  let newDate = `${date[0]}${date[1]}${date[2]}${date[3]}-${date[5]}${date[6]}-${date[8]}${date[9]}` %>
     <form action="/edittrip/<%=trip.id%>" method="post">
       <input type="text" name="name" value="<%=trip.trip_name%>">
       <input type="text" name="from" value="<%=trip.from%>">
       <input type="text" name="to" value="<%=trip.to%>">
       <select name="airline">
         <% for(let i = 0; i < airline.length; i++) { %>
+          <% if(airline[i].id == trip.airline_id) { %>
+          <option value="<%=airline[i].id%>" selected="selected"><%=airline[i].airline_name%></option>
+          <%} else { %>
           <option value="<%=airline[i].id%>"><%=airline[i].airline_name%></option>
+          <% } %>
       <% } %>
       </select>
-      <input type="date" name="date">
+      <input type="date" name="date" value="<%=newDate%>">
       <input type="submit" value="Update">
     </form>
   </body>
