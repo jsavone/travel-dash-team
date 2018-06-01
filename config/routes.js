@@ -2,6 +2,8 @@
 const user = require("../controllers/user.js")
 const airline = require("../controllers/airline.js")
 const trip = require("../controllers/trip.js")
+const note = require("../controllers/note.js")
+
 module.exports = function(app){
 
   app.get('/', user.index);
@@ -14,6 +16,8 @@ module.exports = function(app){
   app.post('/newtrip', trip.add);
   app.get('/edittrip/:id', trip.edit);
   app.post('/edittrip/:id', trip.update);
+  app.get('/tripnotes/:id', note.viewnotes);
+  app.post('/tripnotes/:id', note.newnote);
   app.get('/airline/:id', airline.view);
 
 }

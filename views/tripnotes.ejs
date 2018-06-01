@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>User Trips</title>
+    <title>Notes</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
     <style media="screen">
 
@@ -62,40 +62,75 @@
         padding: 15px;
       }
 
+      .note {
+        margin: 5px auto;
+        width: 500px;
+        border: 2px solid black;
+      }
+      .noteStamp {
+        font-size: 10px;
+      }
+
+      form {
+        display: inline-grid;
+        margin: 20px 0 20px 0;
+        width: 500px;
+      }
+
+      textarea {
+        border: 2px solid black;
+        height: 60px;
+      }
+
+      input[type="submit"] {
+        border: 2px solid black;
+        height: 40px;
+        margin: 20px 0 20px 0;
+        font-size: 17px;
+        font-weight: bold;
+      }
+
     </style>
   </head>
   <body>
-    <h1>Welcome <%=user.name%>!</h1>
-    <a id="plan" href="/newtrip">Plan a Trip</a>
     <div class="tripContainer">
-      <% for(let i =0; i < trips.length; i++) { %>
-        <% let date = trips[i].date.toJSON().toString() %>
+        <% let date = trip.date.toJSON().toString() %>
       <%  let newDate = `${date[5]}${date[6]}/${date[8]}${date[9]}/${date[2]}${date[3]}` %>
         <div class="trip">
           <div class="tripInfo">
-            <a href="/tripnotes/<%=trips[i].trip_id%>"><h2><%=trips[i].trip_name%></h2></a>  
+            <h2><%=trip.trip_name%></h2>
             <p>Date:</p>
             <p><%=newDate%></p>
           </div>
           <div class="airline">
             <h3>Airline:</h3>
-            <a href="/airline/<%=trips[i].airline_id%>"><%=trips[i].airline_name%></a>
+            <a href="/airline/<%=trip.airline_id%>"><%=trip.airline_name%></a>
           </div>
           <div class="toFrom">
             <h3>From:</h3>
-            <p><%=trips[i].from%></p>
+            <p><%=trip.from%></p>
             <h3>To:</h3>
-            <p><%=trips[i].to%></p>
+            <p><%=trip.to%></p>
           </div>
           <div class="edit">
-            <a href="/edittrip/<%=trips[i].trip_id%>">Edit</a>
+            <a href="/edittrip/<%=trip.trip_id%>">Edit</a>
           </div>
         </div>
-
-
+    </div>
+    <h3>Trip Notes:</h3>
+    <div class="notesContainer">
+      <% for(let i = 0; i < notes.length; i++) { %>
+          <div class="note">
+              <p><%=notes[i].trip_note%></p>
+              <hr>
+              <p class="noteStamp">submitted on <%=notes[i].created_at.toDateString()%></p>
+          </div>
       <%}%>
 
     </div>
-
+    <form class="newNote" action="/tripnotes/<%=trip.trip_id%>" method="post">
+      <textarea name="note" placeholder="Enter trip note"></textarea>
+      <input type="submit" value="Submit Note">
+    </form>
   </body>
 </html>
